@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REST_BasNavasca.MVVM.Views.MainView"
+             Title="MainView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+
+    <Grid>
+        <VerticalStackLayout>
+            <Border WidthRequest="410" HeightRequest="100" BackgroundColor="White">
+                <Border.Shadow>
+                    <Shadow Brush="#628299" Offset="0,4" Radius="3" Opacity="0.2"/>
+                </Border.Shadow>
+
+                <HorizontalStackLayout>
+
+                    <Image Source="menu.png"
+                   WidthRequest="35"
+                   Margin="30,10,0,0"
+                   HorizontalOptions="Start"/>
+
+                    <Label Text="Vehicle Renters"
+                       FontFamily="cent"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       VerticalTextAlignment="Center"
+                       Margin="60,0,0,0"
+                       TextColor="#1A1A1A"/>
+
+                </HorizontalStackLayout>
+            </Border>
+
+            <Border WidthRequest="390" HeightRequest="140" StrokeThickness="1" BackgroundColor="White" Margin="0,30,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="#AEC0CF" Offset="0,1" Radius="6" Opacity="0.3"/>
+                </Border.Shadow>
+
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
+
+                    <Image Source="user.png"
+                       WidthRequest="80"
+                       Grid.RowSpan="3"
+                       Margin="20"/>
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="0,15,0,0">
+                        <Label Text="Marven James Bas"
+                           FontFamily="cent"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                            />
+                        <Label Text="Date: December 20, 2003"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                        <Label Text="Time: 8 AM - 12 AM"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                        <Label Text="Vehicle Type: SUV Hatdog"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                    </VerticalStackLayout>
+
+
+
+                </Grid>
+            </Border>
+
+            <Border WidthRequest="390" HeightRequest="140" StrokeThickness="1" BackgroundColor="White" Margin="0,5,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="#AEC0CF" Offset="0,1" Radius="6" Opacity="0.3"/>
+                </Border.Shadow>
+
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
+
+                    <Image Source="user.png"
+                       WidthRequest="80"
+                       Grid.RowSpan="3"
+                       Margin="20"/>
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="0,15,0,0">
+                        <Label Text="Ann Shirley Navasca"
+                           FontFamily="cent"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                            />
+                        <Label Text="Date: October 14, 2004"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                        <Label Text="Time: Overnight"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                        <Label Text="Vehicle Type: SUV MeowMeow"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                    </VerticalStackLayout>
+
+
+
+                </Grid>
+            </Border>
+
+            <Border WidthRequest="390" HeightRequest="140" StrokeThickness="1" BackgroundColor="White" Margin="0,5,0,0">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="#AEC0CF" Offset="0,1" Radius="6" Opacity="0.3"/>
+                </Border.Shadow>
+
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
+
+                    <Image Source="user.png"
+                       WidthRequest="80"
+                       Grid.RowSpan="3"
+                       Margin="20"/>
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="0,15,0,0">
+                        <Label Text="Hello Kitty"
+                           FontFamily="cent"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                            />
+                        <Label Text="Date: May 20, 2025"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                        <Label Text="Time: 1 PM - 6 PM"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                        <Label Text="Vehicle Type: SUV Everest"
+                           FontFamily="cent"
+                           FontSize="14"
+                           TextColor="#696969"
+                           Margin="0,5,0,0"
+                           />
+                    </VerticalStackLayout>
+
+
+
+                </Grid>
+            </Border>
+
+
+        </VerticalStackLayout>
+
+        <ImageButton Source="plus.png"
+                     WidthRequest="80"
+                     VerticalOptions="End"
+                     HorizontalOptions="End"
+                     Margin="30"
+                     Clicked="ImageButton_Clicked"
+               />
+    </Grid>
+</ContentPage>
