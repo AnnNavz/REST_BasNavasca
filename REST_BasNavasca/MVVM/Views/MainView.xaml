@@ -6,7 +6,6 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="White">
 
-
     <Grid>
         <VerticalStackLayout>
             <Border WidthRequest="410" HeightRequest="100" BackgroundColor="White">
@@ -42,7 +41,7 @@
                     <Shadow Brush="#AEC0CF" Offset="0,1" Radius="6" Opacity="0.3"/>
                 </Border.Shadow>
 
-                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
 
                     <Image Source="user.png"
                        WidthRequest="80"
@@ -73,7 +72,16 @@
                            TextColor="#696969"
                            Margin="0,5,0,0"
                            />
+
                     </VerticalStackLayout>
+
+
+
+                    <Image Source="edit.png"
+                               WidthRequest="30"
+                               Grid.Column="2"
+                           VerticalOptions="Start"
+                           Margin="50,20,0,0"/>
 
 
 
@@ -90,7 +98,7 @@
                     <Shadow Brush="#AEC0CF" Offset="0,1" Radius="6" Opacity="0.3"/>
                 </Border.Shadow>
 
-                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
 
                     <Image Source="user.png"
                        WidthRequest="80"
@@ -125,6 +133,14 @@
 
 
 
+                    <Image Source="edit.png"
+                           WidthRequest="30"
+                           Grid.Column="2"
+                           VerticalOptions="Start"
+                           Margin="20,20,0,0"/>
+
+
+
                 </Grid>
             </Border>
 
@@ -138,7 +154,7 @@
                     <Shadow Brush="#AEC0CF" Offset="0,1" Radius="6" Opacity="0.3"/>
                 </Border.Shadow>
 
-                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto">
+                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
 
                     <Image Source="user.png"
                        WidthRequest="80"
@@ -170,6 +186,14 @@
                            Margin="0,5,0,0"
                            />
                     </VerticalStackLayout>
+
+
+
+                    <Image Source="edit.png"
+                               WidthRequest="30"
+                               Grid.Column="2"
+                           VerticalOptions="Start"
+                           Margin="50,20,0,0"/>
 
 
 
