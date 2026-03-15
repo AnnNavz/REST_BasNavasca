@@ -10,6 +10,7 @@
         <VerticalStackLayout HorizontalOptions="Center">
             <Border WidthRequest="403" HeightRequest="100" BackgroundColor="#1fa0ff" Stroke="Transparent">
 
+
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="0,0,15,15"/>
                 </Border.StrokeShape>
@@ -27,16 +28,50 @@
 
                     <Label Text="Vehicle Renters"
                        FontFamily="Outfit-ExtraBold"
-                       FontSize="24"
+                       FontSize="20"
                        VerticalTextAlignment="Center"
-                       Margin="50,0,0,0"
-                       TextColor="White"/>
+                       Margin="70,0,0,0"
+                       TextColor="White"
+                           />
 
                 </HorizontalStackLayout>
             </Border>
 
-            <Border WidthRequest="390" HeightRequest="130" Stroke="#c0c0c0" StrokeThickness="1" BackgroundColor="White" Margin="0,30,0,0">
+            <HorizontalStackLayout Margin="15">
+                <Label Text="Total: "
+                       TextColor="#909090"
+                       FontFamily="Outfit-Regular"
+                       FontSize="14"
+                       Margin="0,0,2,0"/>
+                
+                <Label Text="0"
+                       TextColor="#909090"
+                       FontFamily="Outfit-Regular"
+                       FontSize="14"
+                       Margin="0,0,260,0"/>
 
+                <Label Text="Filter"
+                       TextColor="#909090"
+                       FontFamily="Outfit-Regular"
+                       FontSize="14"
+                       Margin="0,0,5,0"
+                       />
+
+                <Image Source="filter.png"
+                       WidthRequest="25"
+                       Margin="0"/>
+
+            </HorizontalStackLayout>
+            
+            
+
+            <Border WidthRequest="390" HeightRequest="130" Stroke="#c0c0c0" StrokeThickness="1" BackgroundColor="White" >
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="TapGestureRecognizer_Tapped"/>
+                </Border.GestureRecognizers>
+                
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="15"/>
                 </Border.StrokeShape>
@@ -47,7 +82,7 @@
 
                 <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
 
-                    <Image Source="user.png"
+                    <Image Source="marvenuser.png"
                            WidthRequest="80"
                            Grid.RowSpan="3"
                            Margin="20"/>
@@ -61,19 +96,19 @@
                         <Label Text="Date: December 20, 2026"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,10,0,0"
                            />
                         <Label Text="Time: 8 AM - 12 AM"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,2,0,0"
                            />
                         <Label Text="Vehicle Type: SUV Hatdog"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,2,0,0"
                            />
 
@@ -104,7 +139,7 @@
 
                 <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
 
-                    <Image Source="user.png"
+                    <Image Source="annuser.png"
                            WidthRequest="80"
                            Grid.RowSpan="3"
                            Margin="20"/>
@@ -118,19 +153,19 @@
                         <Label Text="Date: October 14, 2026"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,10,0,0"
                            />
                         <Label Text="Time: 1 PM - 6 PM"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,2,0,0"
                            />
                         <Label Text="Vehicle Type: SUV Hatdog"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,2,0,0"
                            />
 
@@ -177,19 +212,19 @@
                         <Label Text="Date: May 20, 2026"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,10,0,0"
                            />
                         <Label Text="Time: Overnight"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,2,0,0"
                            />
                         <Label Text="Vehicle Type: SUV Hatdog"
                                FontFamily="Outfit-Regular"
                                FontSize="12"
-                               TextColor="#696969"
+                               TextColor="#909090"
                                Margin="0,2,0,0"
                            />
 
@@ -213,7 +248,7 @@
         </VerticalStackLayout>
 
         <ImageButton Source="plus.png"
-                     WidthRequest="80"
+                     WidthRequest="70"
                      VerticalOptions="End"
                      HorizontalOptions="End"
                      Margin="30"

@@ -12,4 +12,9 @@ public partial class MainView : ContentPage
 
         await Navigation.PushAsync(new CreateView());
     }
+
+	private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+	{
+		await Navigation.PushAsync(new User());
+	}
 }
