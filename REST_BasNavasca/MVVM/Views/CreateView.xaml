@@ -29,8 +29,8 @@
               ColumnDefinitions="auto,auto">
 
 
-                    <Image Source="addprofile.png"
-                       WidthRequest="90"
+                    <Image Source="marvenuser.png"
+                       WidthRequest="80"
                        Grid.RowSpan="2"
                        Margin="10,0,20,0"
                        HorizontalOptions="Center"/>
