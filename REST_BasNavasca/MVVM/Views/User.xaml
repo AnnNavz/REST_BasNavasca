@@ -3,11 +3,173 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="REST_BasNavasca.MVVM.Views.User"
              Title="User"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="userbg.png">
 
-    <Grid>
-        <Image Source="userbg.png"
-               Aspect="AspectFill"/>
+    <VerticalStackLayout>
+        <Label Text="Renter Details"
+               FontSize="24"
+               FontFamily="OutfitSemibold"
+               Margin="20,30,0,20"
+               TextColor="White"/>
 
-    </Grid>
+        <Frame BackgroundColor="#60FFFFFF" WidthRequest="360" HeightRequest="190" BorderColor="White" CornerRadius="16">
+
+            <Grid RowDefinitions="auto,auto"
+              ColumnDefinitions="auto,auto">
+
+
+                <Image Source="marvenuser.png"
+                       WidthRequest="80"
+                       Grid.RowSpan="2"
+                       Margin="10,0,15,0"
+                       HorizontalOptions="Center"/>
+
+                <VerticalStackLayout Grid.Column="1">
+
+                    <Label Text="Name"
+                       FontSize="16"
+                       FontFamily="OutfitRegular"
+                       TextColor="White"
+                           Margin="0,0,0,5"/>
+                    
+                    <Entry Text="Marven James Bas"
+                           x:Name="NameEntry"
+                           IsEnabled="False"
+                           TextColor="Black"
+                           WidthRequest="200"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="12"
+                           FontFamily="OutfitRegular"/>
+
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
+
+                    <Label Text="Contact Number"
+                       FontSize="16"
+                       FontFamily="OutfitRegular"
+                       TextColor="White"
+                           Margin="0,0,0,5"/>
+
+                    <Entry Text="0920 215 6578" 
+                           x:Name="ContactEntry"
+                           IsEnabled="False"
+                           TextColor="Black"
+                           WidthRequest="200"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="12"
+                           FontFamily="OutfitRegular"/>
+
+
+                </VerticalStackLayout>
+
+            </Grid>
+
+
+        </Frame>
+
+        <Frame WidthRequest="360" HeightRequest="400" BackgroundColor="White" BorderColor="Transparent" CornerRadius="15" Margin="0,10,0,0">
+
+            <VerticalStackLayout>
+                <HorizontalStackLayout>
+                    <Label Text="Reservation"
+               FontSize="20"
+               FontFamily="OutfitSemibold"
+               Margin="10,10,0,0"
+               TextColor="Black"/>
+
+
+                    <Button Text="Edit"
+                            IsVisible="True"
+                        WidthRequest="80"
+                        HeightRequest="20"
+                        FontFamily="OutfitSemibold"
+                        BackgroundColor="#FFA826"
+                            Margin="110,0,0,0"
+                            x:Name="Update"
+                            Clicked="Update_Clicked"/>
+                </HorizontalStackLayout>
+
+                <Label Text="Date"
+                    FontSize="14"
+                    FontFamily="OutfitRegular"
+                    Margin="10,10,0,10"
+                    TextColor="Gray"/>
+
+                <DatePicker Date="05/20/2024"
+                            x:Name="DatePicker" 
+                            IsEnabled="False" 
+                            TextColor="Black" 
+                            WidthRequest="300"
+                            FontFamily="OutfitRegular"/>
+
+                <Label Text="Destination Address"
+                    FontSize="14"
+                    FontFamily="OutfitRegular"
+                    Margin="10,10,0,10"
+                    TextColor="Gray"/>
+
+                <Entry Text="Basdiot, Moalboal"
+                           x:Name="AddressEntry" 
+                           IsEnabled="False"
+                           TextColor="Black"
+                           WidthRequest="300"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="14"
+                           FontFamily="OutfitRegular"/>
+
+                <Label Text="Vehicle Type"
+                    FontSize="14"
+                    FontFamily="OutfitRegular"
+                    Margin="10,10,0,10"
+                    TextColor="Gray"/>
+                
+                <Grid>
+
+                    <Entry Text="SUV Hatdog"
+                           IsVisible="True" 
+                           IsEnabled="False"
+                           x:Name="VehicleEntryData"
+                           TextColor="Black"
+                           WidthRequest="300"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="14"
+                           FontFamily="OutfitRegular"/>
+                    
+                    <Picker x:Name="VehiclePicker" 
+                        WidthRequest="300"
+                        IsVisible="False">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>SUV Hatdog</x:String>
+                                <x:String>Sedan</x:String>
+                                <x:String>Nissan Van</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                </Grid>
+
+
+                <Button Text="Update"
+                        x:Name="SubmitUpdate"
+                        IsVisible="False"
+                        WidthRequest="80"
+                        HeightRequest="20"
+                        FontFamily="OutfitSemibold"
+                        BackgroundColor="#FFA826"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0"/>
+
+
+
+
+            </VerticalStackLayout>
+
+
+
+        </Frame>
+    </VerticalStackLayout>
 </ContentPage>
