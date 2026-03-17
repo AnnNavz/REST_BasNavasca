@@ -8,7 +8,137 @@
 
     <VerticalStackLayout VerticalOptions="Center">
         <Frame BackgroundColor="White" WidthRequest="380" HeightRequest="640" BorderColor="Transparent" CornerRadius="20">
-            
+            <VerticalStackLayout>
+
+                <Label Text="Register"
+                       FontSize="24"
+                       FontFamily="OutfitBold"
+                       TextColor="Black"
+                           Margin="0,0,0,15"/>
+
+
+
+                <Label Text="Personal Details"
+                       FontSize="16"
+                       FontFamily="OutfitRegular"
+                       TextColor="Black"
+                           Margin="0,0,0,20"/>
+
+
+                <Grid RowDefinitions="auto,auto"
+              ColumnDefinitions="auto,auto">
+
+
+                    <Image Source="marvenuser.png"
+                       WidthRequest="80"
+                       Grid.RowSpan="2"
+                       Margin="10,0,20,0"
+                       HorizontalOptions="Center"/>
+
+                    <VerticalStackLayout Grid.Column="1">
+
+                        <Label Text="Name"
+                       FontSize="14"
+                       FontFamily="OutfitRegular"
+                       TextColor="Gray"
+                           Margin="0,0,0,5"/>
+
+                        <Entry Text="Marven James Bas"
+                           x:Name="NameEntry"
+                           TextColor="Black"
+                           WidthRequest="200"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="12"
+                           FontFamily="OutfitRegular"/>
+
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
+
+                        <Label Text="Contact Number"
+                       FontSize="14"
+                       FontFamily="OutfitRegular"
+                       TextColor="Gray"
+                           Margin="0,0,0,5"/>
+
+                        <Entry Text="0920 215 6578" 
+                           x:Name="ContactEntry"
+                           TextColor="Black"
+                           WidthRequest="200"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="12"
+                           FontFamily="OutfitRegular"/>
+
+
+                    </VerticalStackLayout>
+
+                </Grid>
+                
+                <Label Text="Reservation"
+                       FontSize="18"
+                       FontFamily="OutfitSemibold"
+                       TextColor="Black"
+                           Margin="0,15,0,10"/>
+
+                <Label Text="Date"
+                    FontSize="14"
+                    FontFamily="OutfitRegular"
+                    Margin="10,10,0,10"
+                    TextColor="Gray"/>
+
+                <DatePicker Date="05/20/2024"
+                            x:Name="DatePicker" 
+                            TextColor="Black" 
+                            WidthRequest="310"
+                            FontFamily="OutfitRegular"/>
+
+                <Label Text="Destination Address"
+                    FontSize="14"
+                    FontFamily="OutfitRegular"
+                    Margin="10,10,0,10"
+                    TextColor="Gray"/>
+
+                <Entry Text="Basdiot, Moalboal"
+                           x:Name="AddressEntry" 
+                           TextColor="Black"
+                           WidthRequest="310"
+                           BackgroundColor="#60FFFFFF"
+                           FontSize="14"
+                           FontFamily="OutfitRegular"/>
+
+                <Label Text="Vehicle Type"
+                    FontSize="14"
+                    FontFamily="OutfitRegular"
+                    Margin="10,10,0,10"
+                    TextColor="Gray"/>
+
+                <Grid>
+
+                    <Picker x:Name="VehiclePicker" 
+                        WidthRequest="310">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>SUV Hatdog</x:String>
+                                <x:String>Sedan</x:String>
+                                <x:String>Nissan Van</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                </Grid>
+
+
+                <Button Text="Submit"
+                        x:Name="SubmitUpdate"
+                        WidthRequest="100"
+                        HeightRequest="20"
+                        FontFamily="OutfitSemibold"
+                        BackgroundColor="#FFA826"
+                        HorizontalOptions="Center"
+                        Margin="0,20,0,0"/>
+
+            </VerticalStackLayout>
         </Frame>
     </VerticalStackLayout>
     
