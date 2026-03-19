@@ -91,7 +91,7 @@
 
         </Border>
 
-        <Frame WidthRequest="360" HeightRequest="400" BackgroundColor="White" BorderColor="Transparent" CornerRadius="15" Margin="0,10,0,0">
+        <Frame WidthRequest="360" HeightRequest="360" BackgroundColor="White" BorderColor="Transparent" CornerRadius="15" Margin="0,10,0,0">
 
             <VerticalStackLayout>
                 <HorizontalStackLayout>
