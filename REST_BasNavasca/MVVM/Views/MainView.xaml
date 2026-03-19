@@ -94,7 +94,7 @@
                                         <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
                                     </Border.Shadow>
 
-                                    <Grid RowDefinitions="1.2*,0.4*,1*" ColumnDefinitions="Auto,Auto">
+                                    <Grid RowDefinitions="1.2*,0.4*,1*" ColumnDefinitions="0.4*,0.5*,0.2*">
 
                                         <Border Grid.RowSpan="3"
                                                 Margin="20"
@@ -150,6 +150,11 @@
                                                    Margin="0,2,0,0"
                                             />
                                         </HorizontalStackLayout>
+
+                                        <Image Grid.Column="2"
+                                               Grid.RowSpan="3"
+                                               Source="delete.png"
+                                               WidthRequest="20"/>
                                     </Grid>
                                 </Border>
 
