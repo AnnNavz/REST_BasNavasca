@@ -77,9 +77,29 @@ new Command(async () =>
         loadUsers();
     }
 });
+
+        public ICommand DeleteRenterCommand => new Command<Renters>(async (renter) =>
+        {
+            if (renter == null) return;
+
+            // Use Shell.Current for a more reliable way to pop the alert in MAUI
+            bool answer = await Application.Current.MainPage.DisplayAlert(
+    "Delete Entry",
+    $"Remove {renter.Name} from the list?",
+    "Yes",
+    "No");
+
+            if (answer)
+            {
+                var url = $"{baseUrl}/api/v1/vehicles/vehiclerental/{renter.id}";
+                var response = await client.DeleteAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    RentersList.Remove(renter);
+                }
+            }
+        });
     }
-
-
-
 
 }
