@@ -150,16 +150,16 @@
                                                    Margin="0,2,0,0"
                                             />
                                         </HorizontalStackLayout>
+                                        
                                         <ImageButton Grid.Column="2"
-             Grid.RowSpan="3"
-             Source="delete.png"
-             WidthRequest="30" 
-             HeightRequest="30"
-             Padding="5"
-             BackgroundColor="Transparent"
-             InputTransparent="False"
-             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteRenterCommand}"
-             CommandParameter="{Binding .}"/>
+                                                     Grid.RowSpan="3"
+                                                     Source="delete.png"
+                                                     WidthRequest="10"
+                                                     Padding="5"
+                                                     BackgroundColor="Transparent"
+                                                     InputTransparent="False"
+                                                     Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteRenterCommand}"
+                                                     CommandParameter="{Binding .}"/>
                                     </Grid>
                                 </Border>
 

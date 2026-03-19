@@ -40,41 +40,54 @@
                 <VerticalStackLayout>
 
 
-                    <Image Source="addprofile.png"
+                    <Image Source="{Binding NewProfile}"
+                           x:Name="ImageProfile"
                        WidthRequest="100"
                        Grid.RowSpan="2"
                        HorizontalOptions="Center"
-                       Margin="0,25,0,0"/>
+                       Margin="0,15,0,0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PickImageCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
 
-                    <Label Text="Your Name"
-                       FontSize="16"
+                    <Label Text="Tap to add a Profile"
+                           FontSize="14"
+                           FontFamily="OutfitRegular"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
+
+                    <Label Text="Name"
+                       FontSize="14"
                        FontFamily="OutfitSemibold"
                        TextColor="Black"
-                           Margin="25,20,0,5"/>
+                           Margin="30,10,0,5"/>
 
                     <Entry x:Name="NameEntry"
                            Text="{Binding NewRenterName}"
                            TextColor="Black"
+                           BackgroundColor="#dfe8f5"
                            WidthRequest="290"
-                           BackgroundColor="#60FFFFFF"
-                           FontSize="12"
+                           FontSize="14"
                            FontFamily="OutfitRegular"
-                       Margin="0,0,0,15"
+                           Margin="0,0,0,15"
+                           Placeholder="ex. First Name, Last Name"
                                />
 
                     <Label Text="Contact Info"
-                       FontSize="16"
+                       FontSize="14"
                        FontFamily="OutfitSemibold"
                        TextColor="black"
-                           Margin="25,0,0,5"/>
+                           Margin="30,0,0,5"/>
 
                     <Entry x:Name="ContactEntry"
                            Text="{Binding NewContactInfo}"
                            TextColor="Black"
                            WidthRequest="290"
-                           BackgroundColor="#60FFFFFF"
-                           FontSize="12"
-                           FontFamily="OutfitRegular"/>
+                           BackgroundColor="#dfe8f5"
+                           FontSize="14"
+                           FontFamily="OutfitRegular"
+                           Placeholder="ex. 0920 21...."/>
 
 
 
@@ -89,7 +102,7 @@
                        Margin="0,20,0,10"/>
 
 
-            <Border BackgroundColor="White" WidthRequest="350" HeightRequest="350" Stroke="Transparent" Margin="0,0,0,50">
+            <Border BackgroundColor="White" WidthRequest="350" HeightRequest="370" Stroke="Transparent" Margin="0,0,0,50">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="16"/>
                 </Border.StrokeShape>
@@ -105,40 +118,45 @@
                     <Label Text="Date"
                     FontSize="14"
                     FontFamily="OutfitSemibold"
-                    Margin="25,25,0,10"
+                    Margin="30,25,0,10"
                     TextColor="Black"/>
 
                     <DatePicker x:Name="DatePicker" 
                                 Date="{Binding NewDate}"
-                            TextColor="Black" 
-                            WidthRequest="290"
-                            FontFamily="OutfitRegular"/>
+                                TextColor="Black" 
+                                WidthRequest="290"
+                                BackgroundColor="#dfe8f5"
+                                FontFamily="OutfitRegular"/>
 
                     <Label Text="Destination Address"
                     FontSize="14"
                     FontFamily="OutfitSemibold"
-                    Margin="25,10,0,10"
+                    Margin="30,10,0,10"
                     TextColor="Black"/>
 
                     <Entry x:Name="AddressEntry" 
                            Text="{Binding NewAddress}"
                            TextColor="Black"
                            WidthRequest="290"
-                           BackgroundColor="#60FFFFFF"
+                           BackgroundColor="#dfe8f5"
                            FontSize="14"
-                           FontFamily="OutfitRegular"/>
+                           FontFamily="OutfitRegular"
+                           Placeholder="ex. Mohon, Talisay, Cebu 6000"/>
 
                     <Label Text="Vehicle Type"
-                    FontSize="14"
-                    FontFamily="OutfitSemibold"
-                    Margin="25,10,0,10"
-                    TextColor="Black"/>
+                           FontSize="14"
+                           FontFamily="OutfitSemibold"
+                           Margin="30,10,0,10"
+                           TextColor="Black"/>
 
                     <Grid>
 
                         <Picker x:Name="VehiclePicker" 
-                        WidthRequest="290"
-                                SelectedItem="{Binding NewVehicleType}">
+                                WidthRequest="290"
+                                BackgroundColor="#dfe8f5"
+                                SelectedItem="{Binding NewVehicleType}"
+                                TextColor="Black"
+                                FontFamily="OutfitRegular">
                             <Picker.ItemsSource>
                                 <x:Array Type="{x:Type x:String}">
                                     <x:String>SUV Hatdog</x:String>
@@ -154,12 +172,13 @@
                     <Button Text="Submit"
                         x:Name="SubmitUpdate"
                             Command="{Binding AddRenterCommand}"
-                        WidthRequest="100"
+                        WidthRequest="150"
                         HeightRequest="20"
-                        FontFamily="OutfitSemibold"
+                        FontFamily="OutfitBold"
                         BackgroundColor="#FFA826"
                         HorizontalOptions="Center"
-                        Margin="0,20,0,0"/>
+                            TextColor="White"
+                        Margin="0,30,0,0"/>
 
                 </VerticalStackLayout>
 

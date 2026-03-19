@@ -3,7 +3,9 @@ using REST_BasNavasca.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -11,8 +13,8 @@ using System.Windows.Input;
 
 namespace REST_BasNavasca.MVVM.ViewModels
 {
-    public class MainViewModel
-    {
+    public class MainViewModel : INotifyPropertyChanged
+	{
         HttpClient client;
         JsonSerializerOptions _serializerOptions;
         string baseUrl = "https://69a95a0932e2d46caf460630.mockapi.io";
@@ -53,32 +55,87 @@ namespace REST_BasNavasca.MVVM.ViewModels
         public DateTime NewDate { get; set; } = DateTime.Now;
         public string NewAddress { get; set; }
         public string NewVehicleType { get; set; }
-        public ICommand AddRenterCommand =>
+
+		private string _newProfile = "addprofile.png"; // Default image name
+		public string NewProfile
+		{
+			get => _newProfile;
+			set
+			{
+				_newProfile = value;
+				OnPropertyChanged(); // Notify the UI to update the Image
+			}
+		}
+
+		public ICommand PickImageCommand => new Command(async () =>
+		{
+			try
+			{
+				var result = await FilePicker.Default.PickAsync(new PickOptions
+				{
+					PickerTitle = "Select a PNG Photo",
+					FileTypes = FilePickerFileType.Png
+				});
+
+				if (result != null)
+				{
+					NewProfile = result.FullPath;
+
+					using var stream = await result.OpenReadAsync();
+					using var memoryStream = new MemoryStream();
+					await stream.CopyToAsync(memoryStream);
+					byte[] imageBytes = memoryStream.ToArray();
+
+					string base64String = Convert.ToBase64String(imageBytes);
+
+				}
+			}
+			catch (Exception ex)
+			{
+				await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+			}
+		});
+
+		public event PropertyChangedEventHandler PropertyChanged;
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+		public ICommand AddRenterCommand =>
 new Command(async () =>
 {
-    var url = $"{baseUrl}/api/v1/vehicles/vehiclerental";
+	var url = $"{baseUrl}/api/v1/vehicles/vehiclerental";
 
-    var newRenter = new Renters
-    {
-        Name = NewRenterName,
-        Contact = NewContactInfo,
-        Date = NewDate,
-        Address = NewAddress,
-        VehicleModel = NewVehicleType
-    };
+	var newRenter = new Renters
+	{
+		Name = NewRenterName,
+		Contact = NewContactInfo,
+		Date = NewDate,
+		Address = NewAddress,
+		VehicleModel = NewVehicleType,
+        Profile = NewProfile
+	};
 
-    string json = JsonSerializer.Serialize(newRenter, _serializerOptions);
-    var content = new StringContent(json, Encoding.UTF8, "application/json");
+	string json = JsonSerializer.Serialize(newRenter, _serializerOptions);
+	var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-    var response = await client.PostAsync(url, content);
+	var response = await client.PostAsync(url, content);
 
-    if (response.IsSuccessStatusCode)
-    {
-        loadUsers();
-    }
+	if (response.IsSuccessStatusCode)
+	{
+		await Application.Current.MainPage.DisplayAlert("Success", "Renter added successfully!", "OK");
+
+		await Application.Current.MainPage.Navigation.PopAsync();
+
+		loadUsers();
+	}
+	else
+	{
+		await Application.Current.MainPage.DisplayAlert("Error", "Failed to add renter.", "OK");
+	}
 });
 
-        public ICommand DeleteRenterCommand => new Command<Renters>(async (renter) =>
+		public ICommand DeleteRenterCommand => new Command<Renters>(async (renter) =>
         {
             if (renter == null) return;
 
