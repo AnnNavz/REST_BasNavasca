@@ -54,11 +54,11 @@
                        FontSize="14"
                        Margin="0,0,2,0"/>
 
-                    <Label Text="0"
+                    <Label Text="{Binding RentersList.Count}"
                        TextColor="#909090"
                        FontFamily="Outfit-Regular"
                        FontSize="14"
-                       Margin="0,0,260,0"/>
+                       Margin="0,0,250,0"/>
 
                     <Label Text="Filter"
                        TextColor="#909090"

@@ -15,7 +15,10 @@ namespace REST_BasNavasca.MVVM.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
 	{
-        HttpClient client;
+
+		public int TotalRenters => RentersList.Count;
+
+		HttpClient client;
         JsonSerializerOptions _serializerOptions;
         string baseUrl = "https://69a95a0932e2d46caf460630.mockapi.io";
 
