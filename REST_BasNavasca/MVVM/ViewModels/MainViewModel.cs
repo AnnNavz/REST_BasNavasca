@@ -1,4 +1,5 @@
-﻿using REST_BasNavasca.MVVM.Models;
+﻿
+using REST_BasNavasca.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace REST_BasNavasca.MVVM.ViewModels
 {
@@ -44,6 +46,37 @@ namespace REST_BasNavasca.MVVM.ViewModels
                 }
             }
         }
+
+
+        public string NewRenterName { get; set; }
+        public string NewContactInfo { get; set; }
+        public DateTime NewDate { get; set; } = DateTime.Now;
+        public string NewAddress { get; set; }
+        public string NewVehicleType { get; set; }
+        public ICommand AddRenterCommand =>
+new Command(async () =>
+{
+    var url = $"{baseUrl}/api/v1/vehicles/vehiclerental";
+
+    var newRenter = new Renters
+    {
+        Name = NewRenterName,
+        Contact = NewContactInfo,
+        Date = NewDate,
+        Address = NewAddress,
+        VehicleModel = NewVehicleType
+    };
+
+    string json = JsonSerializer.Serialize(newRenter, _serializerOptions);
+    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    var response = await client.PostAsync(url, content);
+
+    if (response.IsSuccessStatusCode)
+    {
+        loadUsers();
+    }
+});
     }
 
 

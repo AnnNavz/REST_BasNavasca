@@ -4,36 +4,55 @@
              x:Class="REST_BasNavasca.MVVM.Views.User"
              Title="User"
              NavigationPage.HasNavigationBar="False"
-             BackgroundImageSource="userbg.png">
+             BackgroundColor="#1fa0ff">
 
     <VerticalStackLayout>
-        <Label Text="Renter Details"
+        <Label Text="Details"
                FontSize="24"
-               FontFamily="OutfitSemibold"
-               Margin="20,30,0,20"
-               TextColor="White"/>
+               FontFamily="OutfitBold"
+               Margin="0,30,0,0"
+               TextColor="White"
+               HorizontalOptions="Center"/>
+        <Label Text="Renters information and its reservation details."
+               FontSize="14"
+               FontFamily="OutfitRegular"
+               Margin="0,5,0,20"
+               TextColor="White"
+               HorizontalOptions="Center"/>
 
-        <Frame BackgroundColor="#60FFFFFF" WidthRequest="360" HeightRequest="190" BorderColor="White" CornerRadius="16">
+        <Border BackgroundColor="White" WidthRequest="360" HeightRequest="210" Stroke="Transparent" Padding="20,25,0,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Offset="0,3"
+                        Radius="6"
+                        Opacity="0.4"/>
+            </Border.Shadow>
+            
+            <VerticalStackLayout>
+                
 
-            <Grid RowDefinitions="auto,auto"
+                <Grid RowDefinitions="auto,auto"
               ColumnDefinitions="auto,auto">
 
 
-                <Image Source="marvenuser.png"
+                    <Image Source="marvenuser.png"
                        WidthRequest="80"
                        Grid.RowSpan="2"
                        Margin="10,0,15,0"
                        HorizontalOptions="Center"/>
 
-                <VerticalStackLayout Grid.Column="1">
+                    <VerticalStackLayout Grid.Column="1">
 
-                    <Label Text="Name"
+                        <Label Text="Name"
                        FontSize="16"
-                       FontFamily="OutfitRegular"
-                       TextColor="White"
+                       FontFamily="OutfitSemibold"
+                       TextColor="Grey"
                            Margin="0,0,0,5"/>
-                    
-                    <Entry Text="Marven James Bas"
+
+                        <Entry Text="Marven James Bas"
                            x:Name="NameEntry"
                            IsEnabled="False"
                            TextColor="Black"
@@ -43,17 +62,17 @@
                            FontFamily="OutfitRegular"/>
 
 
-                </VerticalStackLayout>
+                    </VerticalStackLayout>
 
-                <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
 
-                    <Label Text="Contact Number"
+                        <Label Text="Contact Number"
                        FontSize="16"
-                       FontFamily="OutfitRegular"
-                       TextColor="White"
+                       FontFamily="OutfitSemibold"
+                       TextColor="Grey"
                            Margin="0,0,0,5"/>
 
-                    <Entry Text="0920 215 6578" 
+                        <Entry Text="0920 215 6578" 
                            x:Name="ContactEntry"
                            IsEnabled="False"
                            TextColor="Black"
@@ -63,12 +82,14 @@
                            FontFamily="OutfitRegular"/>
 
 
-                </VerticalStackLayout>
+                    </VerticalStackLayout>
 
-            </Grid>
+                </Grid>
+
+            </VerticalStackLayout>
 
 
-        </Frame>
+        </Border>
 
         <Frame WidthRequest="360" HeightRequest="400" BackgroundColor="White" BorderColor="Transparent" CornerRadius="15" Margin="0,10,0,0">
 

@@ -12,9 +12,11 @@
     </ContentPage.BindingContext>
 
 
-    <ScrollView>
 
-        <Grid>
+
+    <Grid>
+
+        <ScrollView>
             <VerticalStackLayout HorizontalOptions="Center">
                 <Border WidthRequest="403" HeightRequest="100" BackgroundColor="#1fa0ff" Stroke="Transparent">
 
@@ -92,19 +94,31 @@
                                         <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
                                     </Border.Shadow>
 
-                                    <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,Auto">
+                                    <Grid RowDefinitions="1.2*,0.4*,1*" ColumnDefinitions="Auto,Auto">
 
-                                        <Image Source="{Binding Profile}"
-                                               WidthRequest="80"
-                                               Grid.RowSpan="3"
-                                               Margin="20"/>
+                                        <Border Grid.RowSpan="3"
+                                                Margin="20"
+                                                WidthRequest="80"
+                                                HeightRequest="80"
+                                                Padding="0"
+                                                StrokeThickness="0">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="40,40,40,40" />
+                                            </Border.StrokeShape>
+
+                                            <Image Source="{Binding Profile}"
+                                                    Aspect="AspectFill"
+                                                    WidthRequest="80"
+                                                    HeightRequest="80"/>
+                                        </Border>
 
 
                                         <Label Text="{Binding Name}"
-                                                   FontFamily="Outfit-Regular"
+                                                   FontFamily="Outfit-Semibold"
                                                    FontSize="18"
                                                    TextColor="Black"
                                                    Grid.Column="1"
+                                               Margin="0,25,0,0"
                                             />
 
 
@@ -112,14 +126,12 @@
                                             <Label Text="Date: "
                                                    FontFamily="Outfit-Regular"
                                                    FontSize="12"
-                                                   TextColor="#909090"
-                                                   Margin="0,10,0,0"
+                                                   TextColor="Black"
                                             />
                                             <Label Text="{Binding Date}"
                                                    FontFamily="Outfit-Regular"
                                                    FontSize="12"
-                                                   TextColor="#909090"
-                                                   Margin="0,10,0,0"
+                                                   TextColor="Black"
                                             />
 
                                         </HorizontalStackLayout>
@@ -128,13 +140,13 @@
                                             <Label Text="Vehicle Model: "
                                                    FontFamily="Outfit-Regular"
                                                    FontSize="12"
-                                                   TextColor="#909090"
+                                                   TextColor="Black"
                                                    Margin="0,2,0,0"
                                             />
                                             <Label Text="{Binding VehicleModel}"
                                                    FontFamily="Outfit-Regular"
                                                    FontSize="12"
-                                                   TextColor="#909090"
+                                                   TextColor="Black"
                                                    Margin="0,2,0,0"
                                             />
                                         </HorizontalStackLayout>
@@ -147,178 +159,18 @@
                 </CollectionView>
 
 
-                <!--<Border WidthRequest="390" HeightRequest="130" Stroke="#c0c0c0" StrokeThickness="1" BackgroundColor="White" >
-
-                <Border.GestureRecognizers>
-                    <TapGestureRecognizer
-                        Tapped="TapGestureRecognizer_Tapped"/>
-                </Border.GestureRecognizers>
-                
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="15"/>
-                </Border.StrokeShape>
-
-                <Border.Shadow>
-                    <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
-                </Border.Shadow>
-
-                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
-
-                    <Image Source="marvenuser.png"
-                           WidthRequest="80"
-                           Grid.RowSpan="3"
-                           Margin="20"/>
-
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="0,15,0,0">
-                        <Label Text="Marven James Bas"
-                               FontFamily="Outfit-Regular"
-                               FontSize="18"
-                               TextColor="Black"
-                            />
-                        <Label Text="Date: December 20, 2026"
-                               FontFamily="Outfit-Regular"
-                               FontSize="12"
-                               TextColor="#909090"
-                               Margin="0,10,0,0"
-                           />
-                        <Label Text="Vehicle Type: SUV Hatdog"
-                               FontFamily="Outfit-Regular"
-                               FontSize="12"
-                               TextColor="#909090"
-                               Margin="0,2,0,0"
-                           />
-
-                    </VerticalStackLayout>
-
-
-
-                    <Image Source="edit.png"
-                           WidthRequest="30"
-                           Grid.Column="2"
-                           VerticalOptions="Start"
-                           Margin="50,20,0,0"/>
-
-
-
-                </Grid>
-            </Border>
-
-            <Border WidthRequest="390" HeightRequest="130" StrokeThickness="1"  Stroke="#c0c0c0" BackgroundColor="White" Margin="0,10,0,0">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="15"/>
-                </Border.StrokeShape>
-
-                <Border.Shadow>
-                    <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
-                </Border.Shadow>
-
-                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
-
-                    <Image Source="annuser.png"
-                           WidthRequest="80"
-                           Grid.RowSpan="3"
-                           Margin="20"/>
-
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="0,15,0,0">
-                        <Label Text="Ann Shirley Navasca"
-                               FontFamily="Outfit-Regular"
-                               FontSize="18"
-                               TextColor="Black"
-                            />
-                        <Label Text="Date: October 14, 2026"
-                               FontFamily="Outfit-Regular"
-                               FontSize="12"
-                               TextColor="#909090"
-                               Margin="0,10,0,0"
-                           />
-                        <Label Text="Vehicle Type: SUV Hatdog"
-                               FontFamily="Outfit-Regular"
-                               FontSize="12"
-                               TextColor="#909090"
-                               Margin="0,2,0,0"
-                           />
-
-                    </VerticalStackLayout>
-
-
-
-                    <Image Source="edit.png"
-                           WidthRequest="30"
-                           Grid.Column="2"
-                           VerticalOptions="Start"
-                           Margin="50,20,0,0"/>
-
-                    
-
-
-
-                </Grid>
-            </Border>
-
-            <Border WidthRequest="390" HeightRequest="130" Stroke="#c0c0c0" StrokeThickness="1" BackgroundColor="White" Margin="0,10,0,0">
-
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="15"/>
-                </Border.StrokeShape>
-
-                <Border.Shadow>
-                    <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
-                </Border.Shadow>
-
-                <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,Auto,Auto">
-
-                    <Image Source="user.png"
-                           WidthRequest="80"
-                           Grid.RowSpan="3"
-                           Margin="20"/>
-
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Margin="0,15,0,0">
-                        <Label Text="Marley Bas"
-                               FontFamily="Outfit-Regular"
-                               FontSize="18"
-                               TextColor="Black"
-                            />
-                        <Label Text="Date: May 20, 2026"
-                               FontFamily="Outfit-Regular"
-                               FontSize="12"
-                               TextColor="#909090"
-                               Margin="0,10,0,0"
-                           />
-                        <Label Text="Vehicle Type: SUV Hatdog"
-                               FontFamily="Outfit-Regular"
-                               FontSize="12"
-                               TextColor="#909090"
-                               Margin="0,2,0,0"
-                           />
-
-                    </VerticalStackLayout>
-
-
-
-                    <Image Source="edit.png"
-                           WidthRequest="30"
-                           Grid.Column="2"
-                           VerticalOptions="Start"
-                           Margin="50,20,0,0"/>
-
-                    
-
-
-                </Grid>
-            </Border>-->
-
-
             </VerticalStackLayout>
 
-            <ImageButton Source="plus.png"
+        </ScrollView>
+
+        <ImageButton Source="plus.png"
                      WidthRequest="70"
                      VerticalOptions="End"
                      HorizontalOptions="End"
                      Margin="30"
                      Clicked="ImageButton_Clicked"
+                     BackgroundColor="Transparent"
                />
-        </Grid>
+    </Grid>
 
-    </ScrollView>
 </ContentPage>
