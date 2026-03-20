@@ -4,7 +4,7 @@
              x:Class="REST_BasNavasca.MVVM.Views.CreateView"
              Title="CreateView"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#1fa0ff">
+             BackgroundImageSource="imagebg.png">
 
     <ScrollView>
 
@@ -71,7 +71,7 @@
                            FontSize="14"
                            FontFamily="OutfitRegular"
                            Margin="0,0,0,15"
-                           Placeholder="ex. First Name, Last Name"
+                           Placeholder="Enter your name"
                                />
 
                     <Label Text="Contact Info"
@@ -87,7 +87,7 @@
                            BackgroundColor="#dfe8f5"
                            FontSize="14"
                            FontFamily="OutfitRegular"
-                           Placeholder="ex. 0920 21...."/>
+                           Placeholder="ex. 0912 34...."/>
 
 
 
@@ -99,7 +99,7 @@
                        FontFamily="OutfitSemibold"
                        TextColor="White"
                        HorizontalOptions="Center"
-                       Margin="0,20,0,10"/>
+                       Margin="0,20,0,15"/>
 
 
             <Border BackgroundColor="White" WidthRequest="350" HeightRequest="370" Stroke="Transparent" Margin="0,0,0,50">

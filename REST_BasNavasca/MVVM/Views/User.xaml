@@ -4,13 +4,13 @@
              x:Class="REST_BasNavasca.MVVM.Views.User"
              Title="User"
              NavigationPage.HasNavigationBar="False"
-             BackgroundColor="#1fa0ff">
+             BackgroundImageSource="imagebg.png">
 
     <VerticalStackLayout>
         <Label Text="Details"
                FontSize="24"
                FontFamily="OutfitBold"
-               Margin="0,30,0,0"
+               Margin="0,15,0,0"
                TextColor="White"
                HorizontalOptions="Center"/>
         <Label Text="Renters information and its reservation details."
@@ -47,9 +47,9 @@
                     <VerticalStackLayout Grid.Column="1">
 
                         <Label Text="Name"
-                       FontSize="16"
+                       FontSize="15"
                        FontFamily="OutfitSemibold"
-                       TextColor="Grey"
+                       TextColor="Black"
                            Margin="0,0,0,5"/>
 
                         <Entry Text="Marven James Bas"
@@ -57,19 +57,19 @@
                            IsEnabled="False"
                            TextColor="Black"
                            WidthRequest="200"
-                           BackgroundColor="#60FFFFFF"
+                           BackgroundColor="#dfe8f5"
                            FontSize="12"
                            FontFamily="OutfitRegular"/>
 
 
                     </VerticalStackLayout>
 
-                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="0,10,0,0">
+                    <VerticalStackLayout Grid.Column="1" Grid.Row="1" Margin="0,15,0,0">
 
                         <Label Text="Contact Number"
-                       FontSize="16"
+                       FontSize="15"
                        FontFamily="OutfitSemibold"
-                       TextColor="Grey"
+                       TextColor="Black"
                            Margin="0,0,0,5"/>
 
                         <Entry Text="0920 215 6578" 
@@ -77,7 +77,7 @@
                            IsEnabled="False"
                            TextColor="Black"
                            WidthRequest="200"
-                           BackgroundColor="#60FFFFFF"
+                           BackgroundColor="#dfe8f5"
                            FontSize="12"
                            FontFamily="OutfitRegular"/>
 
@@ -91,106 +91,124 @@
 
         </Border>
 
-        <Frame WidthRequest="360" HeightRequest="360" BackgroundColor="White" BorderColor="Transparent" CornerRadius="15" Margin="0,10,0,0">
+        <Border WidthRequest="360" HeightRequest="400" BackgroundColor="White" Stroke="Transparent" Padding="20" Margin="0,10,0,0">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="16"/>
+            </Border.StrokeShape>
+            <Border.Shadow>
+                <Shadow Brush="Black"
+                        Offset="0,3"
+                        Radius="6"
+                        Opacity="0.4"/>
+            </Border.Shadow>
 
-            <VerticalStackLayout>
+            <Grid RowDefinitions="0.1*, 0.7*">
+
+
                 <HorizontalStackLayout>
                     <Label Text="Reservation"
-               FontSize="20"
-               FontFamily="OutfitSemibold"
-               Margin="10,10,0,0"
-               TextColor="Black"/>
-
+                           FontSize="20"
+                           FontFamily="OutfitSemibold"
+                           Margin="10,5,0,0"
+                           TextColor="Black"/>
 
                     <Button Text="Edit"
                             IsVisible="True"
-                        WidthRequest="80"
-                        HeightRequest="20"
-                        FontFamily="OutfitSemibold"
-                        BackgroundColor="#FFA826"
+                            WidthRequest="80"
+                            HeightRequest="20"
+                            TextColor="White"
+                            FontFamily="OutfitSemibold"
+                            BackgroundColor="#FFA826"
                             Margin="110,0,0,0"
                             x:Name="Update"
                             Clicked="Update_Clicked"/>
                 </HorizontalStackLayout>
+                
+                <VerticalStackLayout Grid.Row="1">
 
-                <Label Text="Date"
-                    FontSize="14"
-                    FontFamily="OutfitRegular"
-                    Margin="10,10,0,10"
-                    TextColor="Gray"/>
+                    <Label Text="Date"
+                        FontSize="14"
+                        FontFamily="OutfitRegular"
+                        Margin="10,10,0,10"
+                        TextColor="Black"/>
 
-                <DatePicker Date="05/20/2024"
+                    <DatePicker Date="05/20/2024"
                             x:Name="DatePicker" 
                             IsEnabled="False" 
                             TextColor="Black" 
+                            Background="#dfe8f5"
                             WidthRequest="300"
                             FontFamily="OutfitRegular"/>
 
-                <Label Text="Destination Address"
+                    <Label Text="Destination Address"
                     FontSize="14"
                     FontFamily="OutfitRegular"
                     Margin="10,10,0,10"
-                    TextColor="Gray"/>
+                    TextColor="Black"/>
 
-                <Entry Text="Basdiot, Moalboal"
+                    <Entry Text="Basdiot, Moalboal"
                            x:Name="AddressEntry" 
                            IsEnabled="False"
                            TextColor="Black"
                            WidthRequest="300"
-                           BackgroundColor="#60FFFFFF"
+                           BackgroundColor="#dfe8f5"
                            FontSize="14"
                            FontFamily="OutfitRegular"/>
 
-                <Label Text="Vehicle Type"
+                    <Label Text="Vehicle Type"
                     FontSize="14"
                     FontFamily="OutfitRegular"
                     Margin="10,10,0,10"
-                    TextColor="Gray"/>
-                
-                <Grid>
+                    TextColor="Black"/>
 
-                    <Entry Text="SUV Hatdog"
+                    <Grid>
+
+                        <Entry Text="SUV Hatdog"
                            IsVisible="True" 
                            IsEnabled="False"
                            x:Name="VehicleEntryData"
                            TextColor="Black"
                            WidthRequest="300"
-                           BackgroundColor="#60FFFFFF"
+                           BackgroundColor="#dfe8f5"
                            FontSize="14"
                            FontFamily="OutfitRegular"/>
-                    
-                    <Picker x:Name="VehiclePicker" 
-                        WidthRequest="300"
-                        IsVisible="False">
-                        <Picker.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>SUV Hatdog</x:String>
-                                <x:String>Sedan</x:String>
-                                <x:String>Nissan Van</x:String>
-                            </x:Array>
-                        </Picker.ItemsSource>
-                    </Picker>
 
-                </Grid>
+                        <Picker x:Name="VehiclePicker" 
+                            WidthRequest="300"
+                            IsVisible="False"
+                            BackgroundColor="#dfe8f5">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>SUV Hatdog</x:String>
+                                    <x:String>Sedan</x:String>
+                                    <x:String>Nissan Van</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
 
-
-                <Button Text="Update"
-                        x:Name="SubmitUpdate"
-                        IsVisible="False"
-                        WidthRequest="80"
-                        HeightRequest="20"
-                        FontFamily="OutfitSemibold"
-                        BackgroundColor="#FFA826"
-                        HorizontalOptions="Center"
-                        Margin="0,20,0,0"/>
+                    </Grid>
 
 
-
-
-            </VerticalStackLayout>
+                    <Button Text="Update"
+                            x:Name="SubmitUpdate"
+                            IsVisible="False"
+                            WidthRequest="80"
+                            HeightRequest="20"
+                            FontFamily="OutfitSemibold"
+                            BackgroundColor="#FFA826"
+                            HorizontalOptions="Center"
+                            TextColor="White"
+                            Margin="0,20,0,0"/>
 
 
 
-        </Frame>
+
+                </VerticalStackLayout>
+
+            </Grid>
+
+
+
+        </Border>
     </VerticalStackLayout>
 </ContentPage>
