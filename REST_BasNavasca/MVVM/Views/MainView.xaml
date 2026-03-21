@@ -93,7 +93,7 @@
                                         <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
                                     </Border.Shadow>
 
-                                    <Grid RowDefinitions="1.2*,0.4*,1*" ColumnDefinitions="0.4*,0.5*,0.2*">
+                                    <Grid RowDefinitions="1.2*,0.4*,1*" ColumnDefinitions="0.7*, 1*, 0.4*">
 
                                         <Border Grid.RowSpan="3"
                                                 Margin="20"
@@ -113,12 +113,13 @@
 
 
                                         <Label Text="{Binding Name}"
-                                                   FontFamily="Outfit-Semibold"
-                                                   FontSize="18"
-                                                   TextColor="Black"
-                                                   Grid.Column="1"
-                                               Margin="0,25,0,0"
-                                            />
+                                               FontFamily="OutfitSemibold"
+                                               FontSize="18"
+                                               TextColor="Black"
+                                               Grid.Column="1"
+                                               Margin="0,25,10,0" 
+                                               LineBreakMode="TailTruncation"
+                                               MaxLines="1"/>
 
 
                                         <HorizontalStackLayout Grid.Column="1" Grid.Row="1">
@@ -149,14 +150,14 @@
                                                    Margin="0,2,0,0"
                                             />
                                         </HorizontalStackLayout>
-
                                         <ImageButton Grid.Column="2"
                                                      Grid.RowSpan="3"
                                                      Source="delete.png"
-                                                     WidthRequest="10"
+                                                     WidthRequest="25" 
                                                      Padding="5"
+                                                     VerticalOptions="Center"
+                                                     HorizontalOptions="Center"
                                                      BackgroundColor="Transparent"
-                                                     InputTransparent="False"
                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=DeleteRenterCommand}"
                                                      CommandParameter="{Binding .}"/>
                                     </Grid>
