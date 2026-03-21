@@ -22,7 +22,6 @@ namespace REST_BasNavasca.MVVM.ViewModels
         JsonSerializerOptions _serializerOptions;
         string baseUrl = "https://69a95a0932e2d46caf460630.mockapi.io";
 
-        // 1. Change to public ObservableCollection
         public ObservableCollection<Renters> RentersList { get; set; } = new ObservableCollection<Renters>();
 
         public MainViewModel()
@@ -42,7 +41,6 @@ namespace REST_BasNavasca.MVVM.ViewModels
                 {
                     var data = await JsonSerializer.DeserializeAsync<ObservableCollection<Renters>>(responseStream, _serializerOptions);
 
-                    // 2. Clear and fill the ObservableCollection
                     RentersList.Clear();
                     foreach (var renter in data)
                     {
@@ -59,14 +57,14 @@ namespace REST_BasNavasca.MVVM.ViewModels
         public string NewAddress { get; set; }
         public string NewVehicleType { get; set; }
 
-		private string _newProfile = "addprofile.png"; // Default image name
+		private string _newProfile = "addprofile.png"; 
 		public string NewProfile
 		{
 			get => _newProfile;
 			set
 			{
 				_newProfile = value;
-				OnPropertyChanged(); // Notify the UI to update the Image
+				OnPropertyChanged(); 
 			}
 		}
 
@@ -142,7 +140,6 @@ new Command(async () =>
         {
             if (renter == null) return;
 
-            // Use Shell.Current for a more reliable way to pop the alert in MAUI
             bool answer = await Application.Current.MainPage.DisplayAlert(
     "Delete Entry",
     $"Remove {renter.Name} from the list?",

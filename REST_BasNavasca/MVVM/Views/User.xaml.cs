@@ -4,9 +4,16 @@ namespace REST_BasNavasca.MVVM.Views;
 
 public partial class User : ContentPage
 {
+	private string _temporaryPhotoPath;
+	private Renters _currentRenter;
+	private HttpClient client = new HttpClient();
+	private string baseUrl = "https://69a95a0932e2d46caf460630.mockapi.io";
 	public User(Renters renter)
 	{
 		InitializeComponent();
+
+		_currentRenter = renter;
+
 
 		if (renter != null)
 		{
@@ -44,5 +51,68 @@ public partial class User : ContentPage
 		SubmitUpdate.IsVisible = false;
 		Update.IsVisible = true;
 		CancelUpdate.IsVisible = false;
+
+		UserProfileImage.Source = _currentRenter.Profile;
+		_temporaryPhotoPath = null;
+	}
+
+	private async void SubmitUpdate_Clicked(object sender, EventArgs e)
+	{
+		var updatedRenter = new Renters
+		{
+			id = _currentRenter.id, 
+			Name = NameEntry.Text,
+			Contact = ContactEntry.Text,
+			Date = DatePicker.Date,
+			Address = AddressEntry.Text,
+			VehicleModel = VehiclePicker.IsVisible ? VehiclePicker.SelectedItem?.ToString() : VehicleEntryData.Text,
+			Profile = !string.IsNullOrEmpty(_temporaryPhotoPath) ? _temporaryPhotoPath : _currentRenter.Profile
+		};
+
+		string json = System.Text.Json.JsonSerializer.Serialize(updatedRenter);
+		var content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+
+		var url = $"{baseUrl}/api/v1/vehicles/vehiclerental/{_currentRenter.id}";
+		var response = await client.PutAsync(url, content);
+
+		if (response.IsSuccessStatusCode)
+		{
+			await DisplayAlert("Success", "Information updated!", "OK");
+
+			await Navigation.PopAsync();
+		}
+		else
+		{
+			await DisplayAlert("Error", "Failed to update record.", "OK");
+		}
+	}
+
+	private async void ChangeProfilePic_Tapped(object sender, EventArgs e)
+	{
+		
+	}
+
+	private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+	{
+		if (!SubmitUpdate.IsVisible) return;
+
+		try
+		{
+			var result = await FilePicker.Default.PickAsync(new PickOptions
+			{
+				PickerTitle = "Select a Profile Photo",
+				FileTypes = FilePickerFileType.Images
+			});
+
+			if (result != null)
+			{
+				_temporaryPhotoPath = result.FullPath;
+				UserProfileImage.Source = _temporaryPhotoPath;
+			}
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlert("Error", $"Unable to pick image: {ex.Message}", "OK");
+		}
 	}
 }

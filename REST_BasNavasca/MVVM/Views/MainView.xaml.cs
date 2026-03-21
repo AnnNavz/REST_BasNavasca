@@ -19,10 +19,8 @@ public partial class MainView : ContentPage
 	{
 		var border = sender as Border;
 
-		// The BindingContext of the Border is the specific 'Renters' object for that row
 		if (border?.BindingContext is Renters selectedRenter)
 		{
-			// Pass the object to the User page constructor
 			await Navigation.PushAsync(new User(selectedRenter));
 		}
 	}
