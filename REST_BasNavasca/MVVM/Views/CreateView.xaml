@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="REST_BasNavasca.MVVM.Views.CreateView"
              Title="CreateView"
              NavigationPage.HasNavigationBar="False"
@@ -68,6 +69,7 @@
                            TextColor="Black"
                            BackgroundColor="#dfe8f5"
                            WidthRequest="290"
+                           MaxLength="50"
                            FontSize="14"
                            FontFamily="OutfitRegular"
                            Margin="0,0,0,15"
@@ -83,6 +85,7 @@
                     <Entry x:Name="ContactEntry"
                            Text="{Binding NewContactInfo}"
                            TextColor="Black"
+                           MaxLength="11"
                            WidthRequest="290"
                            BackgroundColor="#dfe8f5"
                            FontSize="14"
@@ -123,6 +126,7 @@
 
                     <DatePicker x:Name="DatePicker" 
                                 Date="{Binding NewDate}"
+                                MinimumDate="{x:Static sys:DateTime.Now}"
                                 TextColor="Black" 
                                 WidthRequest="290"
                                 BackgroundColor="#dfe8f5"

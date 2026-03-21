@@ -105,6 +105,27 @@ namespace REST_BasNavasca.MVVM.ViewModels
 		public ICommand AddRenterCommand =>
 new Command(async () =>
 {
+	if (string.IsNullOrWhiteSpace(NewRenterName) ||
+		string.IsNullOrWhiteSpace(NewContactInfo) ||
+		string.IsNullOrWhiteSpace(NewAddress) ||
+		string.IsNullOrWhiteSpace(NewVehicleType))
+	{
+		await Application.Current.MainPage.DisplayAlert("Validation Error", "All fields are required. Please fill in all information.", "OK");
+		return;
+	}
+
+	if (!NewContactInfo.All(char.IsDigit))
+	{
+		await Application.Current.MainPage.DisplayAlert("Invalid Input", "Please enter numbers only for the contact field.", "OK");
+		return;
+	}
+
+	if (string.IsNullOrEmpty(NewProfile))
+	{
+		await Application.Current.MainPage.DisplayAlert("Photo Required", "Please select a profile photo for the renter.", "OK");
+		return;
+	}
+
 	var url = $"{baseUrl}/api/v1/vehicles/vehiclerental";
 
 	var newRenter = new Renters
