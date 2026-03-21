@@ -32,7 +32,7 @@ namespace REST_BasNavasca.MVVM.ViewModels
             loadUsers();
         }
 
-        private async void loadUsers()
+        public async void loadUsers()
         {
             var url = $"{baseUrl}/api/v1/vehicles/vehiclerental";
             var response = await client.GetAsync(url);

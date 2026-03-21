@@ -18,4 +18,14 @@ public partial class MainView : ContentPage
 	{
 		await Navigation.PushAsync(new User());
 	}
+
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+
+		if (BindingContext is MainViewModel vm)
+		{
+			vm.loadUsers();
+		}
+	}
 }

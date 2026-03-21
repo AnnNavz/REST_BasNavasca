@@ -42,10 +42,10 @@
 
                     <Image Source="{Binding NewProfile}"
                            x:Name="ImageProfile"
-                       WidthRequest="100"
+                       WidthRequest="90"
                        Grid.RowSpan="2"
                        HorizontalOptions="Center"
-                       Margin="0,15,0,0">
+                       Margin="0,15,0,5">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PickImageCommand}"/>
                         </Image.GestureRecognizers>

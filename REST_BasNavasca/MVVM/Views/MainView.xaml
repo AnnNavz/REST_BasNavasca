@@ -175,10 +175,10 @@
         
 
         <ImageButton Source="plus.png"
-                     WidthRequest="70"
+                     WidthRequest="60"
                      VerticalOptions="End"
                      HorizontalOptions="End"
-                     Margin="40"
+                     Margin="30"
                      Clicked="ImageButton_Clicked"
                      BackgroundColor="Transparent"
                />
