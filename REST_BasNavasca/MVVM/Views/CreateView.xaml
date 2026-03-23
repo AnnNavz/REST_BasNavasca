@@ -26,7 +26,7 @@
                HorizontalOptions="Center"/>
 
 
-            <Border BackgroundColor="White" WidthRequest="350" HeightRequest="330" Stroke="Transparent">
+            <Border BackgroundColor="White" WidthRequest="350" HeightRequest="340" Stroke="Transparent">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="16"/>
                 </Border.StrokeShape>
@@ -40,8 +40,31 @@
 
                 <VerticalStackLayout>
 
+                    <Border Margin="20"
+                            WidthRequest="90"
+                            HeightRequest="90"
+                            HorizontalOptions="Center"
+                            Padding="0"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="50" />
+                        </Border.StrokeShape>
 
-                    <Image Source="{Binding NewProfile}"
+                        <Image Source="{Binding NewProfile}"
+                               x:Name="ImageProfile"
+                               Aspect="AspectFill"
+                               WidthRequest="90"
+                               HorizontalOptions="Center"
+                               >
+
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding PickImageCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Border>
+
+
+                    <!--<Image Source="{Binding NewProfile}"
                            x:Name="ImageProfile"
                        WidthRequest="90"
                        Grid.RowSpan="2"
@@ -50,7 +73,7 @@
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PickImageCommand}"/>
                         </Image.GestureRecognizers>
-                    </Image>
+                    </Image>-->
 
                     <Label Text="Tap to add a Profile"
                            FontSize="14"
