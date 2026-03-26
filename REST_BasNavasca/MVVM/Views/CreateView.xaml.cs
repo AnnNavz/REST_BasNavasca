@@ -6,7 +6,7 @@ public partial class CreateView : ContentPage
 	public CreateView()
 	{
 		InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = MainViewModel.Instance;
     }
 
 	private async void addProfile_Clicked(object sender, EventArgs e)

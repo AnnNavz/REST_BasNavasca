@@ -6,7 +6,7 @@ public partial class MainView : ContentPage
 	public MainView()
 	{
 		InitializeComponent();
-        BindingContext = new MainViewModel();
+        BindingContext = MainViewModel.Instance;
     }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
@@ -34,4 +34,9 @@ public partial class MainView : ContentPage
 			vm.loadUsers();
 		}
 	}
+
+    private async void trashBin_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new TrashbinView());
+    }
 }

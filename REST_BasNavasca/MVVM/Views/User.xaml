@@ -240,5 +240,15 @@
                 HorizontalOptions="Center"
                 TextColor="White"
                 Margin="0,30,0,0"/>
+
+        <Button Text="Delete Renter"
+            x:Name="DeleteButton"
+            Clicked="DeleteButton_Clicked"
+            WidthRequest="150"
+            HeightRequest="50"
+            FontFamily="OutfitSemibold"
+            BackgroundColor="#FF4C4C" 
+            TextColor="White"
+                Margin="0,20,0,0"/>
     </VerticalStackLayout>
 </ContentPage>

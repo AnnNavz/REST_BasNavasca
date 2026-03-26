@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="REST_BasNavasca.MVVM.Views.TrashbinView"
+             xmlns:vm="clr-namespace:REST_BasNavasca.MVVM.ViewModels"
+             Title="TrashbinView"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+
+
+    <Grid>
+        <VerticalStackLayout HorizontalOptions="Center" Margin="0,20,0,0">
+            <Border WidthRequest="403" HeightRequest="100" BackgroundColor="#1fa0ff" Stroke="Transparent">
+
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="0,0,15,15"/>
+                </Border.StrokeShape>
+
+                <Border.Shadow>
+                    <Shadow Brush="Black" Offset="0,4" Radius="3" Opacity="0.2"/>
+                </Border.Shadow>
+
+                <HorizontalStackLayout>
+
+                    <Image Source="option.png"
+                           WidthRequest="35"
+                           Margin="30,10,0,0"
+                           HorizontalOptions="Start"/>
+
+                    <Label Text="Trash Bin"
+                       FontFamily="Outfit-ExtraBold"
+                       FontSize="20"
+                       VerticalTextAlignment="Center"
+                       Margin="70,0,0,0"
+                       TextColor="White"
+                           />
+
+                </HorizontalStackLayout>
+            </Border>
+
+            <Frame WidthRequest="400" HeightRequest="590" BackgroundColor="White" BorderColor="Transparent" Padding="0">
+
+                <CollectionView ItemsSource="{Binding TrashbinList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Padding="0,5,0,5" HorizontalOptions="Center">
+                                <Border WidthRequest="370" HeightRequest="130" Stroke="#c0c0c0" StrokeThickness="1" BackgroundColor="White">
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="15"/>
+                                    </Border.StrokeShape>
+                                    <Border.Shadow>
+                                        <Shadow Brush="#5d7689" Offset="0,0" Radius="4" Opacity="0.3"/>
+                                    </Border.Shadow>
+
+                                    <Grid RowDefinitions="1.2*,0.4*,1*" ColumnDefinitions="0.7*, 1*, 0.4*">
+
+                                        <Border Grid.RowSpan="3" Margin="20" WidthRequest="80" HeightRequest="80" Padding="0" StrokeThickness="0">
+                                            <Border.StrokeShape>
+                                                <RoundRectangle CornerRadius="40,40,40,40" />
+                                            </Border.StrokeShape>
+                                            <Image Source="{Binding Profile}" Aspect="AspectFill" WidthRequest="80" HeightRequest="80"/>
+                                        </Border>
+
+                                        <Label Text="{Binding Name}" FontFamily="OutfitSemibold" FontSize="18" TextColor="Black"
+                               Grid.Column="1" Margin="0,25,10,0" LineBreakMode="TailTruncation" MaxLines="1"/>
+
+                                        <HorizontalStackLayout Grid.Column="1" Grid.Row="1">
+                                            <Label Text="Date: " FontFamily="Outfit-Regular" FontSize="12" TextColor="Black"/>
+                                            <Label Text="{Binding Date, StringFormat='{0:MM/dd/yyyy}'}" FontFamily="Outfit-Regular" FontSize="12" TextColor="Black" Margin="3,0,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout Grid.Column="1" Grid.Row="2">
+                                            <Label Text="Vehicle Model: " FontFamily="Outfit-Regular" FontSize="12" TextColor="Black" Margin="0,2,0,0"/>
+                                            <Label Text="{Binding VehicleModel}" FontFamily="Outfit-Regular" FontSize="12" TextColor="Black" Margin="3,2,0,0"/>
+                                        </HorizontalStackLayout>
+
+                                        <VerticalStackLayout Grid.Column="2" Grid.RowSpan="3" VerticalOptions="Center" Spacing="5" Margin="0,0,10,0">
+                                            <ImageButton Source="restore.png" 
+                                         ToolTipProperties.Text="Restore"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=RestoreCommand}"
+                                         CommandParameter="{Binding .}"
+                                         BackgroundColor="Transparent"/>
+
+                                            <ImageButton Source="permdelete.png" 
+                                         ToolTipProperties.Text="Delete Permanently"
+                                         Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=PermanentDeleteCommand}"
+                                         CommandParameter="{Binding .}"
+                                         WidthRequest="20"
+                                         BackgroundColor="Transparent"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Frame>
+
+
+        </VerticalStackLayout>
+    </Grid>
+
+</ContentPage>
+

@@ -115,4 +115,42 @@ public partial class User : ContentPage
 			await DisplayAlert("Error", $"Unable to pick image: {ex.Message}", "OK");
 		}
 	}
+
+    private async void DeleteButton_Clicked(object sender, EventArgs e)
+    {
+        if (_currentRenter == null) return;
+
+        // Standard confirmation alert as seen in your ViewModel
+        bool answer = await DisplayAlert(
+            "Delete Entry",
+            $"Are you sure you want to permanently remove {_currentRenter.Name}?",
+            "Yes",
+            "No");
+
+        if (answer)
+        {
+            try
+            {
+                // Use the same endpoint logic as your MainViewModel
+                var url = $"{baseUrl}/api/v1/vehicles/vehiclerental/{_currentRenter.id}";
+                var response = await client.DeleteAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    await DisplayAlert("Deleted", "The renter has been removed.", "OK");
+
+                    // Navigate back to the list view
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Failed to delete the record from the server.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+    }
 }

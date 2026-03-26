@@ -13,23 +13,25 @@ using System.Windows.Input;
 
 namespace REST_BasNavasca.MVVM.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+	public class MainViewModel : INotifyPropertyChanged
 	{
+        public static MainViewModel Instance { get; } = new MainViewModel();
 
-		public int TotalRenters => RentersList.Count;
+        public int TotalRenters => RentersList.Count;
 
 		HttpClient client;
-        JsonSerializerOptions _serializerOptions;
-        string baseUrl = "https://69a95a0932e2d46caf460630.mockapi.io";
+		JsonSerializerOptions _serializerOptions;
+		string baseUrl = "https://69a95a0932e2d46caf460630.mockapi.io";
 
-        public ObservableCollection<Renters> RentersList { get; set; } = new ObservableCollection<Renters>();
+		public ObservableCollection<Renters> RentersList { get; set; } = new ObservableCollection<Renters>();
+		public ObservableCollection<Renters> TrashbinList { get; set; } = new ObservableCollection<Renters>();
 
         public MainViewModel()
-        {
-            client = new HttpClient();
-            _serializerOptions = new JsonSerializerOptions { WriteIndented = true };
-            loadUsers();
-        }
+		{
+			client = new HttpClient();
+			_serializerOptions = new JsonSerializerOptions { WriteIndented = true };
+			loadUsers();
+		}
 
         public async void loadUsers()
         {
@@ -37,34 +39,41 @@ namespace REST_BasNavasca.MVVM.ViewModels
             var response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
-                using (var responseStream = await response.Content.ReadAsStreamAsync())
-                {
-                    var data = await JsonSerializer.DeserializeAsync<ObservableCollection<Renters>>(responseStream, _serializerOptions);
+                var json = await response.Content.ReadAsStringAsync();
+                var data = JsonSerializer.Deserialize<ObservableCollection<Renters>>(json, _serializerOptions);
 
+                if (data != null)
+                {
                     RentersList.Clear();
+                    TrashbinList.Clear();
+
                     foreach (var renter in data)
                     {
-                        RentersList.Add(renter);
+                        if (renter.Status)
+                            RentersList.Add(renter);
+                        else
+                            TrashbinList.Add(renter);
                     }
+                    OnPropertyChanged(nameof(TotalRenters));
                 }
             }
         }
 
 
         public string NewRenterName { get; set; }
-        public string NewContactInfo { get; set; }
-        public DateTime NewDate { get; set; } = DateTime.Now;
-        public string NewAddress { get; set; }
-        public string NewVehicleType { get; set; }
+		public string NewContactInfo { get; set; }
+		public DateTime NewDate { get; set; } = DateTime.Now;
+		public string NewAddress { get; set; }
+		public string NewVehicleType { get; set; }
 
-		private string _newProfile = "addprofile.png"; 
+		private string _newProfile = "addprofile.png";
 		public string NewProfile
 		{
 			get => _newProfile;
 			set
 			{
 				_newProfile = value;
-				OnPropertyChanged(); 
+				OnPropertyChanged();
 			}
 		}
 
@@ -135,8 +144,8 @@ new Command(async () =>
 		Date = NewDate,
 		Address = NewAddress,
 		VehicleModel = NewVehicleType,
-        Profile = NewProfile
-	};
+		Profile = NewProfile,Status = true
+    };
 
 	string json = JsonSerializer.Serialize(newRenter, _serializerOptions);
 	var content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -157,27 +166,112 @@ new Command(async () =>
 	}
 });
 
-		public ICommand DeleteRenterCommand => new Command<Renters>(async (renter) =>
+
+        public ICommand DeleteRenterCommand => new Command<Renters>(async (renter) =>
         {
             if (renter == null) return;
 
             bool answer = await Application.Current.MainPage.DisplayAlert(
-    "Delete Entry",
-    $"Remove {renter.Name} from the list?",
-    "Yes",
-    "No");
+                "Move to Trash",
+                $"Do you want to move {renter.Name} to the trash bin?",
+                "Move",
+                "Cancel");
 
             if (answer)
             {
+                renter.Status = false;
+
+                try
+                {
+                    var url = $"{baseUrl}/api/v1/vehicles/vehiclerental/{renter.id}";
+                    string json = JsonSerializer.Serialize(renter, _serializerOptions);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await client.PutAsync(url, content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        RentersList.Remove(renter);
+                        TrashbinList.Add(renter);
+
+                        await Application.Current.MainPage.DisplayAlert("Success", "Moved to Trash Bin", "OK");
+                        OnPropertyChanged(nameof(TotalRenters));
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", "Failed to update status on server.", "OK");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                }
+            }
+        });
+
+
+
+        public ICommand RestoreCommand => new Command<Renters>(async (renter) =>
+        {
+            if (renter == null) return;
+
+            renter.Status = true;
+
+            try
+            {
                 var url = $"{baseUrl}/api/v1/vehicles/vehiclerental/{renter.id}";
-                var response = await client.DeleteAsync(url);
+                string json = JsonSerializer.Serialize(renter, _serializerOptions);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await client.PutAsync(url, content);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    RentersList.Remove(renter);
+                    TrashbinList.Remove(renter);
+                    RentersList.Add(renter);
+
+                    await Application.Current.MainPage.DisplayAlert("Restored", $"{renter.Name} is now active.", "OK");
+                    OnPropertyChanged(nameof(TotalRenters));
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+        });
+
+        public ICommand PermanentDeleteCommand => new Command<Renters>(async (renter) =>
+        {
+            if (renter == null) return;
+
+            bool answer = await Application.Current.MainPage.DisplayAlert(
+                "Permanent Delete",
+                $"This will permanently remove {renter.Name} from the database. This action cannot be undone.",
+                "Delete Forever",
+                "Cancel");
+
+            if (answer)
+            {
+                try
+                {
+                    var url = $"{baseUrl}/api/v1/vehicles/vehiclerental/{renter.id}";
+                    var response = await client.DeleteAsync(url);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        TrashbinList.Remove(renter);
+                        await Application.Current.MainPage.DisplayAlert("Deleted", "Record permanently removed from server.", "OK");
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Error", "Server failed to delete the record.", "OK");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
                 }
             }
         });
     }
-
 }
